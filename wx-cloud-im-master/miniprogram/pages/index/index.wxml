@@ -1,0 +1,19 @@
+<!--pages/chat/chat.wxml-->
+<!-- <text>pages/chat/chat.wxml</text> -->
+<view class="container">
+  <view bindtap="toChat1" class="box"><button class="chat">  聊天室♥1 点击进入</button></view>
+  <view bindtap="toChat2" class="box"><button class="chat">  聊天室♥2 点击进入</button></view>
+  <view bindtap="toChat3" class="box"><button class="chat">  聊天室♥3 点击进入</button></view>
+  <view>.</view>
+  <view>.</view>
+  <view>.</view>
+  <view>.</view>
+  <view>.</view>
+  <view>.</view>
+  <view>.</view>
+  <view>.</view>
+  <view>.</view>
+  <view>.</view>
+  <view>.</view>
+
+</view>
