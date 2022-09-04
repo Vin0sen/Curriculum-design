@@ -1,0 +1,48 @@
+#include<iostream>
+#include"PrimeTest.h"
+#include"Euclid.h"
+#include"exEuclid.h"
+#include"multiMod.h"
+using namespace std;
+/* 选取两个大素数p，q ;n=p*q
+ * φ(n)=(p-1)(q-1)
+ * 选择整数e，使得gcd(e,φ(n)) =1
+ * ed mod φ(n)=1;即求e模φ(n)的乘法逆元 d 
+ * PU(e,n) PR(d,n)
+ * Encrypt: C=M^e mod n   ;   Decrypt: M=C^d mod n
+ * RSA是一种分组密码，明文M和密文C都是小于n的正整数，通常n是1024位二进制值
+*/
+int main(){
+	long long p,q,n,fain,e,d;
+	long long M,C;
+	cout<<"请输入p和q:\n";
+	cin>>p>>q;
+	while(!PrimeTest(p)|!PrimeTest(q)){
+		cout<<"p或q非素数, 重新输入\n";
+		cin>>p>>q;
+	}
+	n=p*q;
+	fain=(p-1)*(q-1);
+	
+	for(int i=2;i<fain;i++){
+		if(gcd(fain,i)==1){
+			d=exEuclid(fain,i);
+			if(d>0){
+				e=i;
+				break;
+			}
+			
+		}
+	}
+	
+	cout<<"n:"<<n<<endl<<"φ(n):"<<fain<<endl<<"e:"<<e<<endl<<"d:"<<d<<endl;
+	cout<<"请输入要明文M (0<M<n) :\n";
+	cin>>M;
+	while(M>n|M==n){
+		cout<<"Warning:RSA是一种分组密码,明文和密文必须小于n\n请重新输入M:";
+		cin>>M;
+	}
+	C=multiMod(M,e,n);
+	cout<<"加密: "<<C<<endl;
+	cout<<"解密: "<<multiMod(C,d,n);
+}
