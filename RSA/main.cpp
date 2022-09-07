@@ -1,8 +1,8 @@
 #include<iostream>
-#include"PrimeTest.h"
-#include"Euclid.h"
-#include"exEuclid.h"
-#include"multiMod.h"
+#include"PrimeTest.h" //Miller素性检测
+#include"Euclid.h"    //欧几里得，求最大公因数 
+#include"exEuclid.h"  //扩展欧几里得，求乘法逆元
+#include"multiMod.h"  //大数幂模运算 a^b mod n
 using namespace std;
 /* 选取两个大素数p，q ;n=p*q
  * φ(n)=(p-1)(q-1)
@@ -26,15 +26,16 @@ int main(){
 	
 	for(int i=2;i<fain;i++){
 		if(gcd(fain,i)==1){
-			d=exEuclid(fain,i);
-			if(d>0){
-				e=i;
-				break;
-			}
-			
+			// d=exEuclid(fain,i);
+			// if(d>0){
+			// 	e=i;
+			// 	break;
+			// }
+			e=i;break;
 		}
 	}
-	
+	d=exEuclid(fain,e);
+	if(d<0)d+=fain; //保证d为正数
 	cout<<"n:"<<n<<endl<<"φ(n):"<<fain<<endl<<"e:"<<e<<endl<<"d:"<<d<<endl;
 	cout<<"请输入要明文M (0<M<n) :\n";
 	cin>>M;

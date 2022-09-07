@@ -1,4 +1,6 @@
-//求乘法逆元——扩展欧几里得算法
+/* 求乘法逆元——扩展欧几里得算法
+* ax + by = gcd(a,b)
+*/
 typedef long long ll;
 void Exgcd(ll a, ll b, ll &x, ll &y) {
 	if (b==0){
