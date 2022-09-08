@@ -5,45 +5,45 @@
 #include <cstdlib>
 #include <stdio.h>
 using namespace std;
-
+typedef unsigned char unsigned char;
 class AES{
 public:
 	AES(){
-		initRcon();  //��ʼ��-�ֳ��� 
+		initRcon();  //初始化轮常量
 	};
-	void setCipherKey(byte key[]);
-	void setPlainText(byte plain[]);
+	void setCipherKey(unsigned char key[]);
+	void setPlainText(unsigned char plain[]);
 
-	//��Կ��չ�㷨 
-	void keyExpansion(byte key[], word w[]);
+	//密钥扩展算法
+	void keyExpansion(unsigned char key[], word w[]);
 
 	//functions in encryption and decryption
-	void encryption();         //���� 
+	void encryption();         //加密
 		void processEncryption();
-		void addRoundKey(word in[], int round);                //����Կ�� 
-		void subByte(word in[],bool is_inverse);               //�ֽڴ��� 
-		void shiftRows(word in[],bool is_inverse);   		   //��λ�� 
-		void mixColumn(word in[],bool is_inverse);  		   //�л��� 
-	byte GFMultiplyByte(byte L, byte R);
-	void decryption();         //���� 
+		void addRoundKey(word in[], int round);                //轮密钥加 
+		void subByte(word in[],bool is_inverse);               //字节代换 
+		void shiftRows(word in[],bool is_inverse);   		   //行位移 
+		void mixColumn(word in[],bool is_inverse);  		   //列混淆 
+	unsigned char GFMultiplyByte(unsigned char L, unsigned char R);
+	void decryption();         //解密 
 		void processDecryption();
 
 	void initRcon(); //初始化轮常量
 	void showWord(word w[], int len);//打印矩阵
 	void showMesage();//打印加解密信息
 private:
-	byte cipherKey[16]; //��Կ 
-	word plainText[4];  //���ķ��� 
-	word cipherText[4]; //���ķ��� 
-	word deCipherText[4];//���ܺ�Ľ�� 
+	unsigned char cipherKey[16]; //密钥 
+	word plainText[4];  //明文分组
+	word cipherText[4]; //密文分组 
+	word deCipherText[4];//解密后的结果 
 	static const int Nb=4, Nk=4, Nr=10;
-	word Rcon[11];       //�ֳ��� 
-	word wordKey[44];    //����Կ 
+	word Rcon[11];       //轮常量
+	word wordKey[44];    //轮密钥 
 };
 
 
 // initialize the plainText--trans plaintext from vector to state_matrix
-void AES::setPlainText(byte plain[]){
+void AES::setPlainText(unsigned char plain[]){
 	int i;
 	for(i=0; i<16; i++){
 		plainText[i/4].wordKey[i%4] = plain[i];
@@ -51,7 +51,7 @@ void AES::setPlainText(byte plain[]){
 }
 
 //initialize the key--from vector to state_matrix
-void AES::setCipherKey(byte key[]){
+void AES::setCipherKey(unsigned char key[]){
 	int i;
 	for(i=0; i<16; i++){
 		cipherKey[i] = key[i];
@@ -79,8 +79,8 @@ void AES::initRcon(){
 }
 
 
-//��Կ��չ�㷨�õ�����Կ����keyExpansion-get the round key
-void AES::keyExpansion(byte key[], word w[]){
+//密钥扩展算法, keyExpansion-get the round key
+void AES::keyExpansion(unsigned char key[], word w[]){
 	int i=0;
 	int j,k;
 	word temp;
@@ -107,7 +107,7 @@ void AES::keyExpansion(byte key[], word w[]){
 }
 
 
-//���� 
+//加密
 void AES::encryption(){
 	int i, j ,k;
 	for(i=0; i<4; i++){
@@ -127,10 +127,10 @@ void AES::encryption(){
 	shiftRows(cipherText,0);
 	addRoundKey(cipherText, 10);
 }
-//�ֽڴ��� 
+//字节代换, is_inverse为0是正向，为1是负向  
 void AES::subByte(word in[],bool is_inverse){
-	//is_inverse: 0Ϊ����1Ϊ����  
-	int i,j;  byte L, R;
+	
+	int i,j;  unsigned char L, R;
 	if(is_inverse==0){	
 		for(i=0; i<4; i++){
 			for(j=0; j<4; j++){
@@ -150,7 +150,7 @@ void AES::subByte(word in[],bool is_inverse){
 	}
 }
 
-//��λ�� 
+//行位移
 void AES::shiftRows(word in[],bool is_inverse){
 	int i,j;
 	word temp[4];
@@ -175,7 +175,7 @@ void AES::shiftRows(word in[],bool is_inverse){
 }
 
 
-//�л��� 
+//列混淆
 void AES::mixColumn(word in[],bool is_inverse){
 	word result[4];
 	int i, j, k;
@@ -207,13 +207,13 @@ void AES::mixColumn(word in[],bool is_inverse){
 
 
 //forexample: 0xaf * 0x25
-byte AES::GFMultiplyByte(byte L, byte R){
-	byte temp[8];
-	byte result = 0x00;
+unsigned char AES::GFMultiplyByte(unsigned char L, unsigned char R){
+	unsigned char temp[8];
+	unsigned char result = 0x00;
 	temp[0] = L;
 	int i;
     // temp[0] = L, temp[1] = L*x(modm(x)), temp[2] = L*x^2(mod(m(x))), temp[3] = L*x^3(mod(m(x)))...
-	//�ȼ��㣬�ٴ��������������R��ʵ�����ѡ����Ҫ��
+	//先计算，再存起来，后面根据R的实际情况选用需要的
 	for(i=1; i<8; i++){
 		if(temp[i-1] >= 0x80){
 			temp[i] = (temp[i-1] << 1) ^ 0x1b;
@@ -228,7 +228,7 @@ byte AES::GFMultiplyByte(byte L, byte R){
 	}
 	return result;
 }
-//����Կ�� 
+//轮密钥加 
 void AES::addRoundKey(word in[], int round){
 	int i, j;
 	for(i=0; i<4; i++){
@@ -238,7 +238,7 @@ void AES::addRoundKey(word in[], int round){
 	}
 }
 
-//����
+//解密
 void AES::decryption(){
 	int i, j, k;
 	for(i=0; i<4; i++){
@@ -248,7 +248,7 @@ void AES::decryption(){
 	}
 	addRoundKey(deCipherText, 10);
 	for(i=9; i>0; i--){
-		shiftRows(deCipherText,1);//����Ϊ1������Ϊ0 
+		shiftRows(deCipherText,1);
 		subByte(deCipherText,1);
 		addRoundKey(deCipherText, i);
 		mixColumn(deCipherText,1);
@@ -279,45 +279,45 @@ void rotateMatrix(word w[],int row,int cols){
 }
 
 void AES::showMesage(){
-	cout<<"\n���ľ���:"<<endl;
-	showWord(plainText, 4);			//��ӡ���ľ��� 
-	cout<<"����Կ:"<<endl;
-	rotateMatrix(wordKey,Nb*(Nr+1),4);//��ӡ��չ��Կ44 *4
+	cout<<"\n明文矩阵:"<<endl;
+	showWord(plainText, 4);			//打印明文矩阵
+	cout<<"轮密钥:"<<endl;
+	rotateMatrix(wordKey,Nb*(Nr+1),4);//打印轮密钥44*4
 	cout<<"cipherText:"<<endl;
-	showWord(cipherText, 4);    	//��ӡ���� 
+	showWord(cipherText, 4);    	//打印密文分组矩阵
 	cout<<"deCipherText:"<<endl;
-	showWord(deCipherText, 4);		//��ӡ���ܽ�� 
+	showWord(deCipherText, 4);		//打印解密结果
 }
 
 int main(int argc, char const *argv[]){
 	int i=0;
-	byte plain[16], key[16];
-	//�������ĺ���Կ
+	unsigned char plain[16], key[16];
+
 	ifstream file;
 	file.open("../plain.txt", ios::in);
 	if (!file.is_open()){
-		cout << "��ȡ�ļ�ʧ��" << endl;
+		cout << "文件打开失败!" << endl;
 		return 0;
 	}
 	char c;
-	cout<<"����: ";
+	cout<<"明文: ";
 	while ((c=file.get())!=EOF){
 		plain[i++]=c;
 		cout<<plain[i-1];
 	}
 	while(i<16){
-		plain[i++]=byte(i);//�ֽ���� 
+		plain[i++]=unsigned char(i);//字节填充
 	} 
 	for(i=0; i<16; i++){
-		//  plain[i] = byte(i);
+		//  plain[i] = unsigned char(i);
 		key[i] = 0x01;
 		//  cout<<plain[i];
 	}
 	AES aes;
-	aes.setPlainText(plain); //��������
-	aes.setCipherKey(key);   //������Կ
-	aes.encryption();        //����
-	aes.decryption();        //����
+	aes.setPlainText(plain); //将明文转为16进制的明文矩阵
+	aes.setCipherKey(key);   //设置密钥
+	aes.encryption();        //加密
+	aes.decryption();        //解密
 	aes.showMesage();       
 	return 0;
 }

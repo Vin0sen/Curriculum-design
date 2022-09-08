@@ -1,6 +1,6 @@
-/*   ÃÜÔ¿À©Õ¹some sector in keyExpansion   */ 
+/*   å¯†é’¥æ‰©å±•ç®—æ³•ç”¨åˆ°çš„ä¸€äº›å‡½æ•°some sector in keyExpansion   */ 
 #include"variables.h"
-//×ÖÑ­»· 
+//å­—å¾ªç¯
 word rotWord(word w){
 	int i;
 	word temp;
@@ -9,10 +9,10 @@ word rotWord(word w){
 	}
 	return temp;
 }
-//×Ö´úÌæ 
+//å­—æ›¿æ¢
 word subWord(word w){
 	int i;
-	byte L, R;
+	unsigned char L, R;
 	for(i=0; i<4; i++){
 		L = w.wordKey[i] >> 4;
 		R = w.wordKey[i] & 0x0f;
@@ -20,7 +20,7 @@ word subWord(word w){
 	}
 	return w;
 }
-//×ÖÒì»ò 
+//å­—å¼‚æˆ–
 word wordXOR(word w1, word w2){
 	int i;
 	word temp;
