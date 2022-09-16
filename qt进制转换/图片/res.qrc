@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>kenan.jpg</file>
+        <file>knan2.jpg</file>
+    </qresource>
+</RCC>

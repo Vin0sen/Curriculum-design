@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>图片/res.qrc</file>
+        <file>图片/src=http___cdn.duitang.com_uploads_item_201409_08_20140908130732_kVXzh.jpeg&amp;refer=http___cdn.duitang.jpg</file>
+        <file>图片/src=http___cdn.duitang.com_uploads_item_201408_23_20140823055947_8fX48.png&amp;refer=http___cdn.duitang.jpg</file>
+        <file>图片/start.png</file>
+        <file>图片/luwei.png</file>
+        <file>图片/01.JPG</file>
+        <file>图片/02.JPG</file>
+        <file>图片/03.JPG</file>
+        <file>图片/蓝天白云.png</file>
+    </qresource>
+</RCC>
