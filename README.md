@@ -1,4 +1,5 @@
 # Curriculum-design
+- 基于QT做的进制转换，当年就这么混过去了，菜鸟级别的
 - wx-cloud-im-master
   - 微信小程序——聊天室
   - 实现情况
