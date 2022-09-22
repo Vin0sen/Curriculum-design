@@ -1,26 +1,25 @@
 #include<iostream>
-#include"PrimeTest.h" //MillerËØĞÔ¼ì²â
-#include"Euclid.h"    //Å·¼¸ÀïµÃ£¬Çó×î´ó¹«ÒòÊı 
-#include"exEuclid.h"  //À©Õ¹Å·¼¸ÀïµÃ£¬Çó³Ë·¨ÄæÔª
-#include"multiMod.h"  //´óÊıÃİÄ£ÔËËã a^b mod n
+#include"PrimeTest.h" //Millerç´ æ€§æ£€æµ‹
+#include"Euclid.h"    //æ¬§å‡ é‡Œå¾—ï¼Œæ±‚æœ€å¤§å…¬å› æ•° 
+#include"exEuclid.h"  //æ‰©å±•æ¬§å‡ é‡Œå¾—ï¼Œæ±‚ä¹˜æ³•é€†å…ƒ
+#include"multiMod.h"  //å¤§æ•°å¹‚æ¨¡è¿ç®— a^b mod n
 using namespace std;
-/* Ñ¡È¡Á½¸ö´óËØÊıp£¬q ;n=p*q
- * ¦Õ(n)=(p-1)(q-1)
- * Ñ¡ÔñÕûÊıe£¬Ê¹µÃgcd(e,¦Õ(n)) =1
- * ed mod ¦Õ(n)=1;¼´ÇóeÄ£¦Õ(n)µÄ³Ë·¨ÄæÔª d 
+/* é€‰å–ä¸¤ä¸ªå¤§ç´ æ•°pï¼Œq ;n=p*q
+ * Ï†(n)=(p-1)(q-1)
+ * é€‰æ‹©æ•´æ•°eï¼Œä½¿å¾—gcd(e,Ï†(n)) =1
+ * ed mod Ï†(n)=1;å³æ±‚eæ¨¡Ï†(n)çš„ä¹˜æ³•é€†å…ƒ d 
  * PU(e,n) PR(d,n)
  * Encrypt: C=M^e mod n   ;   Decrypt: M=C^d mod n
- * RSAÊÇÒ»ÖÖ·Ö×éÃÜÂë£¬Ã÷ÎÄMºÍÃÜÎÄC¶¼ÊÇĞ¡ÓÚnµÄÕıÕûÊı£¬Í¨³£nÊÇ1024Î»¶ş½øÖÆÖµ
+ * RSAæ˜¯ä¸€ç§åˆ†ç»„å¯†ç ï¼Œæ˜æ–‡Må’Œå¯†æ–‡Céƒ½æ˜¯å°äºnçš„æ­£æ•´æ•°ï¼Œé€šå¸¸næ˜¯1024ä½äºŒè¿›åˆ¶å€¼
 */
 int main(){
 	long long p,q,n,fain,e,d;
 	long long M,C;
-	cout<<"ÇëÊäÈëpºÍq:\n";
-	cin>>p>>q;
-	while(!PrimeTest(p)|!PrimeTest(q)){
-		cout<<"p»òq·ÇËØÊı, ÖØĞÂÊäÈë\n";
-		cin>>p>>q;
-	}
+
+	do{
+		p=rand()+10000;
+		q=rand()+10000;
+	}while(!PrimeTest(p)|!PrimeTest(q));//å¤§ç´ æ•°pã€qéšæœºç”Ÿæˆ
 	n=p*q;
 	fain=(p-1)*(q-1);
 	
@@ -35,15 +34,17 @@ int main(){
 		}
 	}
 	d=exEuclid(fain,e);
-	if(d<0)d+=fain; //±£Ö¤dÎªÕıÊı
-	cout<<"n:"<<n<<endl<<"¦Õ(n):"<<fain<<endl<<"e:"<<e<<endl<<"d:"<<d<<endl;
-	cout<<"ÇëÊäÈëÒªÃ÷ÎÄM (0<M<n) :\n";
+	if(d<0)d+=fain; //ä¿è¯dä¸ºæ­£æ•°
+	printf("på’Œqçš„å€¼åˆ†åˆ«ä¸º: %d\t%d\n",p,q);
+	printf("n:%d\tÏ†(n):%d\ne:%d\td:%d\n",n,fain,e,d);
+	printf("å…¬é’¥ PU=(%d,%d)\tç§é’¥ PR(%d,%d)\n",e,n,d,n);
+	cout<<"è¯·è¾“å…¥è¦æ˜æ–‡M (0<M<n) :\n";
 	cin>>M;
 	while(M>n|M==n){
-		cout<<"Warning:RSAÊÇÒ»ÖÖ·Ö×éÃÜÂë,Ã÷ÎÄºÍÃÜÎÄ±ØĞëĞ¡ÓÚn\nÇëÖØĞÂÊäÈëM:";
+		cout<<"Warning:RSAæ˜¯ä¸€ç§åˆ†ç»„å¯†ç ,æ˜æ–‡å’Œå¯†æ–‡å¿…é¡»å°äºn\nè¯·é‡æ–°è¾“å…¥M:";
 		cin>>M;
 	}
 	C=multiMod(M,e,n);
-	cout<<"¼ÓÃÜ: "<<C<<endl;
-	cout<<"½âÃÜ: "<<multiMod(C,d,n);
+	cout<<"åŠ å¯†: "<<C<<endl;
+	cout<<"è§£å¯†: "<<multiMod(C,d,n);
 }
