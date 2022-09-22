@@ -8,8 +8,9 @@
   - 参考仓库：https://gitee.com/Kindear/wx-cloud-im
 ## 密码学
 - RSA算法
-  - 素性检测 Miller-Rabin算法
-  - 扩展欧几里得算法exEuclid——求乘法逆元
-  - 大数幂模算法(a^b mod n)
+  - [x] 素性检测 Miller-Rabin算法
+  - [ ] 大数乘法（中国剩余定理）还未实现。。。n=p×q
+  - [x] 扩展欧几里得算法exEuclid——求乘法逆元
+  - [x] 大数幂模算法(a^b mod n)
 - AES128算法
   - 从文本中读取内容，但是长度还只能≤16字节
