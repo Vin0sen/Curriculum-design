@@ -1,7 +1,9 @@
 from PySide6.QtWidgets import QApplication
 from PySide6.QtUiTools import QUiLoader
 import requests, traceback
-
+'''
+https://blog.csdn.net/m0_52062236/article/details/128160126
+'''
 class HttpClient:
     def __init__(self) -> None:
 
@@ -62,5 +64,5 @@ if __name__ == '__main__':
     app = QApplication([])
     stats = HttpClient()
     stats.ui.show()
-    app.exec_()
+    app.exec()
             

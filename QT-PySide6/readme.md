@@ -9,9 +9,15 @@
     - 输入字符的严格限制，比如仅允许输入字母数字
     - 和数据库的联合，验证密码，现在只是前端的一个小玩意
     - 这个QSS有时间再说吧，现在不想搞
+
+![](img/demo1.png)
+
 ## 2.http接口测试
 - 通过 requests 库处理请求
 - QTableWidget 类的方法使用removeRow、insertRow、currentRow
+
+![](img/demo2.png)
+
 ## 3.多个窗口切换
 - 主要是方法的调用: QWidgets.hide() / close() / show()
 
@@ -24,6 +30,11 @@
 - lambda表达式 
 - 样式设计setStyleSheet
 
+![](img/demo4.png)
 
-# 关于我
-一名普通大学生，网安专业，在筹备搭建博客，https://vin0sen.github.io/blog/ , 不过吧现在还是空壳。。。就酱紫
+## 5.滚动条的添加
+目前能够知道的是有两种方法：
+1. QScrollArea类
+2. QScrollBar类, 和QWidget合作，将QScrollBar拖动时的数值通过换算来移动QWidget同样的距离
+
+![](img/demo5.png)

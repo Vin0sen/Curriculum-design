@@ -21,4 +21,4 @@ if __name__ == '__main__':
     app = QApplication([])
     login = Login()
     login.ui.show()
-    app.exec_()
+    app.exec()

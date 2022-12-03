@@ -6,6 +6,8 @@
     - 三个聊天室
     - 消息撤回（从云数据库删除记录），但是不会显示消息已删除
   - 参考仓库：https://gitee.com/Kindear/wx-cloud-im
+- QT - PySide6的几个demos
+ 
 ## 密码学
 - RSA算法
   - [x] 素性检测 Miller-Rabin算法
@@ -14,3 +16,6 @@
   - [x] 大数幂模算法(a^b mod n)
 - AES128算法
   - 从文本中读取内容，但是长度还只能≤16字节
+
+# 关于我
+一名普通大学生，网安专业，在筹备搭建博客，https://vin0sen.github.io/blog/ , 不过吧现在还是空壳。。。就酱紫

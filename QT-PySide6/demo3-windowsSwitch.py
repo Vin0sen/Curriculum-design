@@ -34,4 +34,4 @@ if __name__ == '__main__':
     app = QApplication()
     mainWindow = Windows1()
     mainWindow.w.show()
-    app.exec_()
+    app.exec()
