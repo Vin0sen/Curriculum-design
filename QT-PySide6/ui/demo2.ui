@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>683</width>
+    <height>454</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="3" column="2">
+    <widget class="QTextEdit" name="bodyText"/>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Header</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>176</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_add">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_minus">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>-</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="3" column="0">
+    <widget class="QTableWidget" name="headersTable">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::NoSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectItems</enum>
+     </property>
+     <attribute name="horizontalHeaderMinimumSectionSize">
+      <number>16</number>
+     </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
+     <row>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>2</string>
+      </property>
+     </row>
+     <column>
+      <property name="text">
+       <string>字段</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>值</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QComboBox" name="methodBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>1</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>1</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>URL: </string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="urlLineEdit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>7</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_send">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>1</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Send</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="1" rowspan="2">
+    <widget class="Line" name="line_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="3">
+    <widget class="Line" name="line_3">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QLabel" name="label_2">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Request Body</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="3">
+    <widget class="QTextEdit" name="responseText"/>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
